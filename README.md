@@ -24,13 +24,18 @@ This approach is **model-driven** and **non-learning-based**, relying solely on 
 
 ---
 
-## Pipeline
+## Results
 
-1. **Dark Channel Extraction** – Compute local minima across RGB channels within fixed-size patches to generate the dark channel map.
-2. **Atmospheric Light Estimation** – Select candidate pixels with the highest intensity values in the dark channel to infer the global airlight vector.
-3. **Transmission Estimation** – Estimate transmission via normalized dark channel computation relative to atmospheric light intensity.
-4. **Transmission Refinement** – Apply edge-preserving filtering (e.g., guided or bilateral) to refine the estimated transmission and maintain structural continuity.
-5. **Scene Radiance Recovery** – Reconstruct the haze-free image by inverting the atmospheric scattering model using the refined transmission and airlight estimates.
+The Dark Channel Prior (DCP) dehazing module was implemented and evaluated under varying hyperparameter configurations, including different values for the minimum transmission threshold (t₀) and range limits for intensity normalization (minimum and maximum thresholds). These experiments were conducted to identify the most effective parameter settings across diverse hazing conditions and datasets.
+
+The results/ directory contains comparative outputs illustrating both the baseline implementation and a refined version with optimized parameter tuning and transmission map refinement. Each version reflects adjustments in the thresholds and filtering strategies applied to balance color restoration, contrast, and edge fidelity.
+
+The DCP framework allows further optimization by varying threshold parameters to suit specific environmental conditions and datasets — for instance, adapting to differences in haze density, lighting, or scene composition.
+
+Below are representative result grids from selected experiments. Each grid showcases side-by-side comparisons of input hazy images, baseline outputs, refined dehazed results and ground truth images.
+
+![Results 01](results/comparison/grid_batch_3.png)
+![Results 02](results/comparison/grid_batch_4.png)
 
 ---
 
